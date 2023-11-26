@@ -52,7 +52,6 @@ h2 {
   .calculator-button {
     background: hsl(210, 25%, 95%);
     font-family: Orbitron, sans-serif;
-    
     border: none;
     font-size: 1.4rem;
     inline-size: 55px;
