@@ -6,7 +6,8 @@
 body {
     overflow: hidden;
     font-family: Orbitron, sans-serif;
-    background-color: rgba(0, 0, 0, 0.01)
+    background-color: rgba(0, 0, 0, 0.01);
+    color: hsl(202, 11%, 29%);
 }
 
 h1 {
