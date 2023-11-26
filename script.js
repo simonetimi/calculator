@@ -1,4 +1,3 @@
-
 let firstNumber = 0;
 let operator;
 let secondNumber = 0;
@@ -182,7 +181,7 @@ acButton.addEventListener('click', function () {
 // Keyboard support
 
 
-document.addEventListener('keypress', (event) => {
+document.addEventListener('keydown', (event) => {
     if (event.code === 'Digit7' && event.shiftKey === false) {
       button7.click();
     } else if (event.code === 'Digit8') {
@@ -239,9 +238,3 @@ function convertNumber(num) {
         return num;
     }
 }
-
-  
-/* BUGS
-> Backspace on keyboard doesn't work
-
-*/
