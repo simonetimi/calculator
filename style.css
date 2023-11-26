@@ -91,10 +91,13 @@ h2 {
     height: 3rem;
     background-color: hsl(202, 11%, 29%);
     justify-content: center;
-    color: white;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.85em;
+}
+
+.footer p {
+  color: white;
 }
 
 #github {
