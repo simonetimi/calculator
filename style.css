@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
 * {
     margin: 0;
+    color: hsl(202, 11%, 29%);
 }
 
 body {
@@ -59,6 +60,7 @@ h2 {
     block-size: 55px;
     margin: 0.25rem;
     border-radius: 40px;
+    color: hsl(202, 11%, 29%);
   }
   .calculator-button:active {
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3) inset;
