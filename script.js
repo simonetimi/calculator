@@ -7,28 +7,28 @@ let initialState = true;
 let numberCounter = 0;
 
 //Create basic calculation functions
-const sum = (a, b) => a + b;
+const sum = (a, b) => convertNumber(a + b);
 const sub = function (a, b) {
     if (initialState === true && a < b) {
         initialState = false;
-        return b
+        return convertNumber(b)
     } else {
-        return a - b}
+        return convertNumber(a - b)}
 };
 const mul = function (a, b) {
     if (initialState === true) {
         initialState = false;
-        return b;
+        return convertNumber(b)
     } else {
-        return a * b}
+        return convertNumber(a * b)}
 };
 const div = function (a, b) {
     if (initialState === true) {
         initialState = false;
-        return b;
+        return convertNumber(b)
     };
     if (b !== 0) {
-        return +parseFloat((a / b).toFixed(9));
+        return convertNumber(+parseFloat((a / b).toFixed(9)))
     } else {
         return 'I see you.'
     }
@@ -37,17 +37,17 @@ const div = function (a, b) {
 //Create operate function
 const operate = function (firstNumber, operator, secondNumber) {
     if (operator === '+') {
-        a = display.textContent = sum(firstNumber, secondNumber);
-        return a;
+        display.textContent = sum(firstNumber, secondNumber);
+        return convertNumber(display.textContent)
     } else if (operator === '-') {
-        a = display.textContent = sub(firstNumber, secondNumber);
-        return a;
+        display.textContent = sub(firstNumber, secondNumber);
+        return convertNumber(display.textContent)
     } else if (operator === '*') {
-        a = display.textContent = mul(firstNumber, secondNumber);
-        return a;
+        display.textContent = mul(firstNumber, secondNumber);
+        return convertNumber(display.textContent)
     } else if (operator === '/') {
-        a = display.textContent = div(firstNumber, secondNumber);
-        return a;
+        display.textContent = div(firstNumber, secondNumber);
+        return convertNumber(display.textContent)
     }
 };
 
@@ -82,9 +82,9 @@ const button9 = document.getElementById('9-button')
 const button4 = document.getElementById('4-button')
 const button5 = document.getElementById('5-button')
 const button6 = document.getElementById('6-button')
-const button3 = document.getElementById('1-button')
+const button3 = document.getElementById('3-button')
 const button2 = document.getElementById('2-button')
-const button1 = document.getElementById('3-button')
+const button1 = document.getElementById('1-button')
 const button0 = document.getElementById('0-button')
 const buttonPoint = document.getElementById('point-button')
 const sumButton = document.getElementById('sum-button')
@@ -116,8 +116,8 @@ sumButton.addEventListener('click', function () {
     numberCounter = 0;
     secondNumber = +display.textContent;
     operator = '+';
-    firstNumber = +operate(firstNumber, operator, secondNumber);
     operatorState = true;
+    firstNumber = +operate(firstNumber, operator, secondNumber);
     } else {
         return
     }
@@ -128,8 +128,8 @@ subButton.addEventListener('click', function () {
     numberCounter = 0;
     secondNumber = +display.textContent;
     operator = '-';
-    firstNumber = +operate(firstNumber, operator, secondNumber);
     operatorState = true;
+    firstNumber = +operate(firstNumber, operator, secondNumber);
     } else {
         return
     }
@@ -140,8 +140,8 @@ mulButton.addEventListener('click', function () {
     numberCounter = 0;
     secondNumber = +display.textContent;
     operator = '*';
-    firstNumber = +parseFloat((+operate(firstNumber, operator, secondNumber)).toFixed(9));
     operatorState = true;
+    firstNumber = +operate(firstNumber, operator, secondNumber);
     } else {
         return
     }
@@ -152,8 +152,8 @@ divButton.addEventListener('click', function () {
     numberCounter = 0;
     secondNumber = +display.textContent;
     operator = '/';
-    firstNumber = +parseFloat((+operate(firstNumber, operator, secondNumber)).toFixed(9));
     operatorState = true;
+    firstNumber = +operate(firstNumber, operator, secondNumber);
     } else {
         return
     }
@@ -162,8 +162,7 @@ enterButton.addEventListener('click', function () {
     buttonPoint.disabled = false;
     numberCounter = 0;
     secondNumber = +display.textContent;
-    firstNumber = operate(firstNumber, operator, secondNumber);
-    operator = '';
+    firstNumber = +operate(firstNumber, operator, secondNumber);
     operatorState = false;
     initialState = true;
     firstNumber = 0;
@@ -230,11 +229,19 @@ document.addEventListener('keypress', (event) => {
   });
 
 
-//TO FIX BUG OVERFLOW
+function convertNumber(num) {
+    let digits = Math.floor(Math.log10(Math.abs(num))) + 1;
+    if (digits > 7) {
+        num = parseFloat(num);
+        return num.toPrecision(6);
+    }
+    else {
+        return num;
+    }
+}
 
+  
+/* BUGS
+> Backspace on keyboard doesn't work
 
-/*
-Limits decimals, but drops trailing zeroes
-+parseFloat((xxxx).toFixed(9));
-*/ 
-
+*/
